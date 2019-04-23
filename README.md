@@ -20,9 +20,11 @@ A mobile responsive web application to help people manage their inventory and ma
 **Database**: SQLite3
 
 ## Dependencies
-> pip3 install bs4
-> pip3 install cv2
-> pip3 install requests
+```python
+pip3 install bs4
+pip3 install cv2
+pip3 install requests
+```
 
 ## Run - [from root folder]
 ```python

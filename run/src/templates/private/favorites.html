@@ -62,7 +62,7 @@
         border: 3px SOLID rgba(155, 128, 224, .5);
         display: inline-block;
         padding:10em;
-        margin-bottom: 18px;
+        margin-bottom: 50px;
         margin-right: 9px;
         margin-left: 9px;
 	    vertical-align:middle;
@@ -79,6 +79,104 @@
         max-width: 2024px;
         margin: 0 auto;
         font-size: 0;
+    }
+    .draw-border-red {
+    box-shadow: inset 0 0 0 2px rgba(155, 128, 224, 1);
+    color: rgba(155, 128, 224, 1);
+    transition: color 0.25s 0.0833333333s;
+    position: relative;
+    }
+    .draw-border-red::before, .draw-border-red::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 0;
+    right: 0;
+    }
+    .draw-border-red::before {
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    }
+    .draw-border-red::after {
+    border-top-width: 4px;
+    border-right-width: 4px;
+    }
+    .draw-border-red:hover {
+        color:  #d9534f
+    }
+    .draw-border-red:hover::before, .draw-border-red:hover::after {
+    border-color:  #d9534f;
+    box-shadow: 0 0 10px 0 rgba(217, 83, 79, .25);
+    transition: border-color 0s, width 0.25s, height 0.25s;
+    width: 100%;
+    height: 100%;
+    }
+    .draw-border-red:hover::before {
+    transition-delay: 0s, 0s, 0.25s;
+    }
+    .draw-border-red:hover::after {
+    transition-delay: 0s, 0.25s, 0s;
+    }
+    .draw-border-green {
+    box-shadow: inset 0 0 0 2px rgba(155, 128, 224, 1);
+    color: rgba(155, 128, 224, 1);
+    transition: color 0.25s 0.0833333333s;
+    position: relative;
+    }
+    .draw-border-green::before, .draw-border-green::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 0;
+    right: 0;
+    }
+    .draw-border-green::before {
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    }
+    .draw-border-green::after {
+    border-top-width: 4px;
+    border-right-width: 4px;
+    }
+    .draw-border-green:hover {
+        color:  #5cb85c
+    }
+    .draw-border-green:hover::before, .draw-border-green:hover::after {
+    border-color:  #5cb85c;
+    box-shadow: 0 0 10px 0 rgba(92, 184, 92, .5);
+    transition: border-color 0s, width 0.25s, height 0.25s;
+    width: 100%;
+    height: 100%;
+    }
+    .draw-border-green:hover::before {
+    transition-delay: 0s, 0s, 0.25s;
+    }
+    .draw-border-green:hover::after {
+    transition-delay: 0s, 0.25s, 0s;
+    }
+    .btn {
+    width: 50px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 0;
+    padding: 1em 1em;
+    letter-spacing: 0.05rem;
+    max-width: 150px;
+    margin-top: 10px;
+    margin-left: 3px;
+    margin-right: 3px
+    }
+    .btn:focus {
+    outline: 2px dotted #55d7dc;
     }
     input[type=submit] {
         width: 40%;
@@ -105,11 +203,11 @@
         </div>
         
         <hr>
-    
+        
         <div class="grid-container"> 
                 <!-- View list start here -->
                 {% for shoe in favList %}
-                {% set filename = shoe +'.jpg' %}   
+                {% set filename = shoe.split('~')[0] +'.jpg' %}   
                 <!-- Single product -->
                 <div class="wrapper">
                     <a href="/p/id/{{shoe}}" class="overlay">
@@ -119,6 +217,11 @@
                     </a>
                     <span class="helper"></span>
                     <img src="{{ url_for('static', filename=filename) }}" class="sub">
+                    <form action= "/p/favorites" method="post" enctype="multipart/form-data">
+                        <div>
+                            <button class="btn draw-border-red" value="{{shoe.split('~')[1]}}" name="post_button">✗</button>
+                        </div>
+                    </form>
                 </div>
                 {% endfor %}
                 <!-- end Single product -->

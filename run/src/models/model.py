@@ -126,7 +126,8 @@ class User:
             favorite_list=[]
             for rows in row:
                 shoe = rows['shoename']
-                favorite_list.append(shoe)
+                pk   = rows['pk']
+                favorite_list.append(shoe+'~'+str(pk))
             return favorite_list
         else:
             favorite_list=[]
@@ -442,11 +443,10 @@ class UserFavorites:
             val = (self.shoename,self.user_pk)
             cur.execute(SQL,val)
     
-    def remove(self,shoename):
+    def remove(self,pk):
         with OpenCursor() as cur:
-            SQL = """ REMOVE FROM user_favorites WHERE 
-                shoename=? and user_pk=?; """
-            val = (shoename,self.pk)
+            SQL = """ DELETE FROM user_favorites WHERE pk=?; """
+            val = (pk,)
             cur.execute(SQL,val)
 
     def __repr__(self):

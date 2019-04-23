@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 from flask import Blueprint,render_template,request,redirect,url_for,session,flash
 from time  import gmtime,strftime
 
-from ..models.model import User,ShoeBox,Sneaker,ShoeView
+from ..models.model import User,ShoeBox,Sneaker,ShoeView,UserFavorites
 from ..extensions.loaders import tsplit, search_terms,update_shoe,shoe_info,price_premium,shoes_like_list,get_current_date,account_pairing_scores,line_graph_labels,add_dict_total
 
 elekid = Blueprint('private',__name__,url_prefix='/p')
@@ -148,24 +148,23 @@ def favorites():
                             'pk': session['pk'], 'age': session['age'], 
                             'gender': session['gender']})
             favList = user.display_favorites()
-
             like_account = account_pairing_scores(user.pk)
             pk1 = like_account[0]
             pk2 = like_account[1]
-
             u = User()
             recList = u.display_reccomendations(pk1,pk2)
-            
             print(favList)
             print(recList)
-
             return render_template('private/favorites.html',
                                     favList = favList,
                                     recList = recList )
         except KeyError:
             return redirect('/register')
     elif request.method == 'POST':
-        pass
+        print(request.form.get('post_button'))
+        fav = UserFavorites()
+        fav.remove(request.form.get('post_button'))
+        return redirect('/p/favorites')
     else:
         pass
 

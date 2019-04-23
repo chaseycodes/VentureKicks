@@ -1,5 +1,5 @@
 # Venture Kicks
-A mobile responsive web application to help people manage their inventory and make better purchases. 
+A mobile responsive web application to help users manage their inventory and make better purchases. 
 
 ## Demo
 > www.venturekicks.com

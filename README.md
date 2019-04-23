@@ -1,4 +1,4 @@
-![](images/banner.jpg)
+![](images/banner.png)
 > A mobile responsive web application to help users manage their inventory and make better purchases. 
 
 ## Demo

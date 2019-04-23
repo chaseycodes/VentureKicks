@@ -7,8 +7,6 @@ import codecs
 import requests
 import time
 import random
-import cv2
-import tensorflow as tf
 
 from bs4 import BeautifulSoup
 from werkzeug.utils import secure_filename
@@ -22,6 +20,7 @@ UPLOAD_FOLDER = '/Users/ahn.ch/Projects/shoe_data/run/src/static'
 
 elekid = Blueprint('public',__name__)
 
+"""INACTIVE"""
 
 # @elekid.route('/finder',methods=['GET','POST'])
 # def finder():

@@ -4,8 +4,6 @@
 import os
 import time
 import sqlite3
-import cv2
-import tensorflow as tf
 
 from flask import Flask, render_template, request, url_for, redirect, session
 from datetime import datetime
@@ -28,16 +26,6 @@ electabuzz.secret_key = 'SUPER-DUPER-SECRET'
 electabuzz.register_blueprint(public_buzz)
 electabuzz.register_blueprint(private_buzz)
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-def prepare(filepath):
-    IMG_SIZE = 80
-    img_array = cv2.imread(filepath, cv2.IMREAD_GRAYSCALE)
-    new_array = cv2.resize(img_array, (IMG_SIZE, IMG_SIZE))
-    return new_array.reshape(-1, IMG_SIZE, IMG_SIZE, 1)
-
 def get_current_date():
     ts = time.time() 
     new_time = datetime.utcfromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
@@ -46,7 +34,7 @@ def get_current_date():
 
 def ages():
     age = []
-    for x in range(18,80):
+    for x in range(1,100):
         age.append(x)
     return age
 
@@ -378,6 +366,7 @@ def register():
     if request.method == 'GET':
         return render_template('public/register-vk.html',age_list=age_list)
     elif request.method == 'POST':
+        username = request.form['username']
         with User(username=request.form['username'],password=request.form['password']) as un:
             """ 
             -----------------------
@@ -393,12 +382,12 @@ def register():
                                         message  ='Username Exists')
             elif request.form['password'] != request.form['conf_password']:
                 age_list = ages()
-                return render_template('public/register.html',
+                return render_template('public/register-vk.html',
                                         age_list = age_list, 
                                         message  = "Password's Do Not Match")
             elif request.form['gender'] == None:
                 age_list = ages()
-                return render_template('public/register.html', 
+                return render_template('public/register-vk.html', 
                                         age_list = age_list,  
                                         message  = "Select Gender")
                 """ 

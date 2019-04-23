@@ -43,8 +43,5 @@ python3 run/wsgi.py
 ## Reccomendation
 ![](images/finder.png)
 
-## Market Analysis
-![](images/data.png)
-
 ## Contact Me
 chaseahn4@gmail.com

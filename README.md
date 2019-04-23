@@ -22,7 +22,6 @@ A mobile responsive web application to help users manage their inventory and mak
 ## Dependencies
 ```python
 pip3 install bs4
-pip install opencv-python
 pip3 install requests
 ```
 

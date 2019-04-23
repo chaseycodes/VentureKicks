@@ -1,0 +1,197 @@
+{% extends "structure.html" %}
+{% block viewport %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>ID: {{shoename}}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<style>
+    body {
+        background-color: #2a2b3d;
+        color: lightgray;
+    }
+    hr {
+        height: 1px;
+        color: gray;
+        background-color: gray;
+        border: none;
+    }
+    h3 {
+    color: lightgray;
+    }   .helper {
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }   
+    .sub {
+        vertical-align: middle;
+        width: 90%;
+        max-height: 140px;
+    } 
+    .main {
+        vertical-align: middle;
+        width: 90%;
+        max-height:400px;
+        max-width:600px;
+    } 
+    h6 {
+        text-align:center;
+        width: 90%;
+        max-height: 120px;
+        max-width: 130px;
+        color: White;
+        z-index: 5;
+        padding:0.05em;
+        top:10px; left:7px; right:120px;
+        position:absolute;
+    }   
+    .overlay{
+        height: 144px;
+        width: 144px;
+        position: absolute;
+        border-radius: 8px;
+        opacity: 0;
+        background:rgba(0, 0, 0, 0.6) ;
+        transition: opacity 0.5s linear;
+        margin-left: -7px;
+    }
+    .wrapper {
+        width: 150px;
+        height: 150px;
+        max-width: 500px;
+        max-height: 500px;
+        background: WHITE;
+        border-radius: 8px;
+        border: 3px SOLID rgba(155, 128, 224, .5);
+        display: inline-block;
+        padding:10em;
+        margin-bottom: 18px;
+        margin-right: 9px;
+        margin-left: 9px;
+	    vertical-align:middle;
+        box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.2);
+    }
+    .main-wrapper {
+        width: 70%;
+        margin: 1em auto;
+        background: #fff;
+        padding: 1em;
+        border-radius: 8px;
+        border: 1px solid #f5f5f5;
+        border: 3px SOLID rgba(155, 128, 224, .5);
+        box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.2);
+    }
+    .wrapper:hover > .overlay{
+            opacity: 1;
+        }
+    .wrapper .txt {
+        text-align: center;
+        vertical-align: middle;
+    }
+    .grid-container{
+        max-width: 2024px;
+        margin: 0 auto;
+        font-size: 0;
+    }
+    input[type=submit] {
+        width: 40%;
+        max-width: 250px;
+        background-color: #A03991;
+        color: white;
+        padding: 10px 10px;
+        margin: 30px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    input[type=submit]:hover {
+        background-color: #97eff1;
+    }
+</style>
+</head>
+<body>
+    <div class="w3-container w3-center w3-animate-bottom">
+        <div class="push">
+            <div class="sub-header">
+            <h3>{{shoename}}</h3>
+            </div>
+        </div>
+        
+        <hr>
+        <div class="main-wrapper">
+            {% set filename = shoename+'.jpg' %}
+            <span class="helper"></span>
+            <img src="{{ url_for('static', filename=filename) }}" class="main">
+        </div>
+        <div class="sub-header">
+            <h3>About</h3>
+        </div>
+
+        <hr>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-dark">
+                <thead>
+                    <tr>
+                        <th>Release Date</th>
+                        <th>Total Sales</th>
+                        <th>Colorway</th>
+                        <th>Retail</th>
+                        <th>Value</th>
+                        <th>Premium</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{shoeData['release_date']}}</td>
+                        <td>{{shoeData['total_sales']}}</td>
+                        <td>{{shoeData['colorway']}}</td>
+                        <td>${{shoeData['retail_price']}}</td>
+                        <td>${{shoeData['avg_sale_price']}}</td>
+                        <td>{{premium}}%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <form action="/p/id/{{shoename}}" method="post" enctype="multipart/form-data">
+            <input type="submit" value="Add To Shoebox" name="post_button">
+            <input type="submit" value="Favorite" name="post_button">
+        </form>
+
+        <div>
+            <font size="1" color="green">{{message}}</font>
+        </div>
+
+        <div class="sub-header">
+            <h3>Similar</h3>
+        </div>
+
+        <hr>
+
+        <div class="grid-container"> 
+                <!-- View list start here -->
+                {% for shoe in likeShoes %}
+                {% set filename = shoe +'.jpg' %}   
+                <!-- Single product -->
+                <div class="wrapper">
+                    <a href="/p/id/{{shoe}}" class="overlay">
+                        <div>
+                            <h6>{{shoe}}</h6>
+                        </div>
+                    </a>
+                    <span class="helper"></span>
+                    <img src="{{ url_for('static', filename=filename) }}" class="sub">
+                </div>
+                {% endfor %}
+                <!-- end Single product -->
+        </div> 
+
+    </div>
+</body>
+<script src='http://code.jquery.com/jquery-latest.js'></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>
+{% endblock %}

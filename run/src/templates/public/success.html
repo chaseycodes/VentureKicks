@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<title>VentureKicks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="refresh" content="2;url=http://0.0.0.0:5000/" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+body {
+  background-color: #326d69;
+}
+.push {
+  margin-top: 110px;
+}
+.lds-facebook {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 6px;
+  width: 13px;
+  background: #fcf;
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.lds-facebook div:nth-child(1) {
+  left: 6px;
+  animation-delay: -0.24s;
+}
+.lds-facebook div:nth-child(2) {
+  left: 26px;
+  animation-delay: -0.12s;
+}
+.lds-facebook div:nth-child(3) {
+  left: 45px;
+  animation-delay: 0;
+}
+@keyframes lds-facebook {
+  0% {
+    top: 6px;
+    height: 51px;
+  }
+  50%, 100% {
+    top: 19px;
+    height: 26px;
+  }
+}
+</style> 
+<body>
+  <div class="push">
+    <div class="w3-container w3-center w3-animate-bottom">
+      <div>
+        <font color="white">Your Account has been</font>
+      </div>
+      <div>
+        <font color="white">successfully created.</font>
+      </div>
+      <div>
+        <font color="white">Redirecting you to homepage now.</font>
+      </div>
+      <p>
+        <div class="lds-facebook"><div></div><div></div><div></div></div>
+      </p>
+    </div>
+  </div>
+</body>

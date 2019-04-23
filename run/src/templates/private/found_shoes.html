@@ -1,0 +1,235 @@
+{% extends "structure.html" %}
+{% block viewport %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<style>
+body {
+        background-color: #2a2b3d;
+        color: lightgray;
+    }
+    hr {
+        height: 1px;
+        color: gray;
+        background-color: gray;
+        border: none;
+    }
+    h3 , h5 {
+        color: lightgray;
+    }
+    .helper {
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }   
+    img {
+        vertical-align: middle;
+        width: 90%;
+        max-height: 140px;
+    } 
+    h6 {
+        text-align:center;
+        width: 90%;
+        max-height: 120px;
+        max-width: 130px;
+        color: White;
+        z-index: 5;
+        padding:0.05em;
+        top:10px; left:7px; right:120px;
+        position:absolute;
+    }   
+    .overlay {
+        height: 144px;
+        width: 144px;
+        position: absolute;
+        border-radius: 8px;
+        opacity: 0;
+        background:rgba(0, 0, 0, 0.6);
+        transition: opacity 0.5s linear;
+        margin-left: -7px;
+    }
+    .wrapper {
+        width: 150px;
+        height: 150px;
+        max-width: 500px;
+        max-height: 500px;
+        background: WHITE;
+        border-radius: 8px;
+        border: 3px SOLID rgba(155, 128, 224, .5);
+        display: inline-block;
+        padding:10em;
+        margin-bottom: 50px;
+        margin-right: 9px;
+        margin-left: 9px;
+	    vertical-align:middle;
+        box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.2);
+    }
+    .wrapper:hover > .overlay{
+            opacity: 1;
+        }
+    .wrapper .txt {
+        text-align: center;
+        vertical-align: middle;
+    }
+    .grid-container{
+        max-width: 2024px;
+        margin: 0 auto;
+        font-size: 0;
+    }
+    .draw-border-red {
+    box-shadow: inset 0 0 0 2px rgba(155, 128, 224, 1);
+    color: rgba(155, 128, 224, 1);
+    transition: color 0.25s 0.0833333333s;
+    position: relative;
+    }
+    .draw-border-red::before, .draw-border-red::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 0;
+    right: 0;
+    }
+    .draw-border-red::before {
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    }
+    .draw-border-red::after {
+    border-top-width: 4px;
+    border-right-width: 4px;
+    }
+    .draw-border-red:hover {
+        color:  #d9534f
+    }
+    .draw-border-red:hover::before, .draw-border-red:hover::after {
+    border-color:  #d9534f;
+    box-shadow: 0 0 10px 0 rgba(217, 83, 79, .25);
+    transition: border-color 0s, width 0.25s, height 0.25s;
+    width: 100%;
+    height: 100%;
+    }
+    .draw-border-red:hover::before {
+    transition-delay: 0s, 0s, 0.25s;
+    }
+    .draw-border-red:hover::after {
+    transition-delay: 0s, 0.25s, 0s;
+    }
+    .draw-border-green {
+    box-shadow: inset 0 0 0 2px rgba(155, 128, 224, 1);
+    color: rgba(155, 128, 224, 1);
+    transition: color 0.25s 0.0833333333s;
+    position: relative;
+    }
+    .draw-border-green::before, .draw-border-green::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 0;
+    right: 0;
+    }
+    .draw-border-green::before {
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    }
+    .draw-border-green::after {
+    border-top-width: 4px;
+    border-right-width: 4px;
+    }
+    .draw-border-green:hover {
+        color:  #5cb85c
+    }
+    .draw-border-green:hover::before, .draw-border-green:hover::after {
+    border-color:  #5cb85c;
+    box-shadow: 0 0 10px 0 rgba(92, 184, 92, .5);
+    transition: border-color 0s, width 0.25s, height 0.25s;
+    width: 100%;
+    height: 100%;
+    }
+    .draw-border-green:hover::before {
+    transition-delay: 0s, 0s, 0.25s;
+    }
+    .draw-border-green:hover::after {
+    transition-delay: 0s, 0.25s, 0s;
+    }
+    .btn {
+    width: 50px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 0;
+    padding: 1em 1em;
+    letter-spacing: 0.05rem;
+    max-width: 150px;
+    margin-top: 10px;
+    margin-left: 3px;
+    margin-right: 3px
+    }
+    .btn:focus {
+    outline: 2px dotted #55d7dc;
+    }
+    input[type=submit] {
+        width: 40%;
+        background-color: #A03991;
+        color: white;
+        padding: 10px 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    input[type=submit]:hover {
+        background-color: #97eff1;
+    }
+</style>
+</head>
+<body>
+    <div class="w3-container w3-center">
+        <div class="sub-header">
+            <h3>Results</h3>
+        </div>
+        <hr>
+        <form action= "/find-res" method="post" enctype="multipart/form-data">
+            <div class="grid-container"> 
+                    <!-- View list start here -->
+                    {% for shoe in shoe_list %}
+                    {% set filename = shoe +'.jpg' %}   
+                    <!-- Single product -->
+                    <div class="wrapper">
+                        <a href="/p/id/{{shoe}}" class="overlay">
+                        <div>
+                            <h6>{{shoe}}</h6>
+                        </div>
+                        </a>
+                        <span class="helper"></span>
+                        <img src="{{ url_for('static', filename=filename) }}">
+                        <div>
+                            <button class="btn draw-border-green" value="like~{{shoe}}" name="post_button">✓</button>
+                            <button class="btn draw-border-red" value="dislike~{{shoe}}" name="post_button">✗</button>
+                        </div>
+                    </div>
+                    <!-- end Single product -->
+                    {% endfor %}
+            </div>   
+
+        
+        <hr>
+        <div>
+            <input name="post_button" type="submit" value="Return">
+        </div>
+        </form>
+    </div>
+</body>
+<script src='http://code.jquery.com/jquery-latest.js'></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>
+{% endblock %}

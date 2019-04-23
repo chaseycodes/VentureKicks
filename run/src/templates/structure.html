@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+<style>
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Droid Sans', sans-serif;
+    outline: none;
+  }
+  ::-webkit-scrollbar {
+    background: transparent;
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #888;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .main-color {
+    color: #ffc107
+  }
+  body {background-color: rgba(0, 0, 0, 0.3)}
+  #contents {
+    position: relative;
+    transition: .3s;
+    margin-left: 290px;
+    background-color: #2a2b3d;
+  }
+  .margin {
+    margin-left: 0 !important;
+  }
+
+  .navbar-right .dropdown-menu {
+    right: auto !important;
+    left: 0 !important;
+  }
+  .navbar-default {
+    background-color: #326d69 !important;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    border: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+  .navbar-default .navbar-nav>li>a {
+    color: #EEE !important;
+    line-height: 55px !important;
+    padding: 0 10px !important;
+  }
+  .navbar-default .navbar-brand {color:#FFF !important}
+  .navbar-default .navbar-nav>li>a:focus,
+  .navbar-default .navbar-nav>li>a:hover {color: #EEE !important}
+  
+  .navbar-default .navbar-nav>.open>a,
+  .navbar-default .navbar-nav>.open>a:focus,
+  .navbar-default .navbar-nav>.open>a:hover {background-color: transparent !important; color: #FFF !important}
+  
+  .navbar-default .navbar-brand {line-height: 55px !important; padding: 0 !important}
+  .navbar-default .navbar-brand:focus,
+  .navbar-default .navbar-brand:hover {color: #FFF !important}
+  .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {margin: 0 !important}
+  @media (max-width: 767px) {
+    .navbar>.container-fluid .navbar-brand {
+      margin-left: 15px !important;
+    }
+    .navbar-default .navbar-nav>li>a {
+      padding-left: 0 !important;
+    }
+    .navbar-nav {
+      margin: 0 !important;
+    }
+    .navbar-default .navbar-collapse,
+    .navbar-default .navbar-form {
+      border: none !important;
+    }
+  
+  }
+  
+  .navbar-default .navbar-nav>li>a {
+    float: left !important;
+  }
+  .navbar-default .navbar-nav>li>a>span:not(.caret) {
+    background-color: #e74c3c !important;
+    border-radius: 50% !important;
+    height: 25px !important;
+    width: 25px !important;
+    padding: 2px !important;
+    font-size: 11px !important;
+    position: relative !important;
+    top: -10px !important;
+    right: 5px !important
+  }
+  .dropdown-menu>li>a {
+    padding-top: 0px !important;
+    padding-right: 5px !important;
+  }
+  .navbar-default .navbar-nav>li>a>i {
+    font-size: 18px !important;
+  }
+  /* Start media query */
+  
+  @media (max-width: 767px) {
+    #contents {
+      margin: 0 !important
+    }
+    .statistics .box {
+      margin-bottom: 25px !important;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a {
+      color: #CCC !important
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+      color: #FFF !important
+    }
+    .navbar-default .navbar-toggle{
+      border:none !important;
+      color: #EEE !important;
+      font-size: 18px !important;
+    }
+    .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {background-color: transparent !important}
+  }
+  
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header" >
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <i class="fa fa-align-right"></i>
+            </button>
+            <a class="navbar-brand" href="/p/adex">VENTURE<span class="main-color">KICKS</span></a>
+          </div>
+          <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/p/account">Overview</a></li>
+                  <li><a href="/p/favorites">Favorites</a></li>
+                  <li><a href="/finder">Finder</a></li>
+                  <!-- <li><a href="/p/upload">Upload</a></li> -->
+                  <li role="separator" class="divider"></li>
+                  <li><a href="/logout">Logout</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brands<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/nike">Nike</a></li>
+                    <li><a href="/adidas">adidas</a></li>
+                    <li><a href="/jordan">Jordan</a></li>
+                    <li><a href="/other">Other</a></li>
+                  </ul>
+              </li>
+              <!-- <li><a href="/chartzard"></i>Data</a></li> -->
+            </ul>
+          </div>
+        </div>
+      </nav>
+</body>
+  {% block viewport %}
+      <p>This is default content from structure.html</p>
+  {% endblock %}
+</html>

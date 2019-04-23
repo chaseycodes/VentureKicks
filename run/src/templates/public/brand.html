@@ -1,0 +1,218 @@
+{% extends "structure.html" %}
+{% block viewport %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{brand}}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<style>
+    body {
+        background-color: #2a2b3d;
+        color: lightgray;
+    }
+    hr {
+        height: 1px;
+        color: gray;
+        background-color: gray;
+        border: none;
+    }
+    h3, h5 {
+        color: lightgray;
+    }
+    .helper {
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }   
+    img {
+        vertical-align: middle;
+        width: 90%;
+        max-height: 140px;
+    } 
+    h6 {
+        text-align:center;
+        width: 90%;
+        max-height: 120px;
+        max-width: 130px;
+        color: White;
+        z-index: 5;
+        padding:0.05em;
+        top:10px; left:7px; right:120px;
+        position:absolute;
+    }   
+    .overlay{
+        height: 144px;
+        width: 144px;
+        position: absolute;
+        border-radius: 8px;
+        opacity: 0;
+        background:rgba(0, 0, 0, 0.6) ;
+        transition: opacity 0.5s linear;
+        margin-left: -7px;
+    }
+    .wrapper {
+        width: 150px;
+        height: 150px;
+        max-width: 500px;
+        max-height: 500px;
+        background: WHITE;
+        border-radius: 8px;
+        border: 3px SOLID rgba(155, 128, 224, .5);
+        display: inline-block;
+        padding:10em;
+        margin-bottom: 18px;
+        margin-right: 9px;
+        margin-left: 9px;
+	    vertical-align:middle;
+        box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.2);
+    }
+    .wrapper:hover > .overlay{
+            opacity: 1;
+        }
+    .wrapper .txt {
+        text-align: center;
+        vertical-align: middle;
+    }
+    .grid-container{
+        max-width: 2024px;
+        margin: 0 auto;
+        font-size: 0;
+    }
+    input[type=submit] {
+        width: 24%;
+        max-width: 200px;
+        background-color: #A03991;
+        color: white;
+        padding: 10px 10px;
+        margin: 5px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    input[type=submit]:hover {
+        background-color: #97eff1;
+    }
+    .custom-select {
+        width: 30%;
+        max-width: 130px;
+        display: inline-block; 
+        position: relative;
+        top: 50%;
+        margin-top: 23px;
+        margin-bottom: -25px;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        /* Styling the select background */
+        background-color: rgba(255, 255, 255, 0.12);
+        border-radius: 4px;
+        font-weight: 0;
+        }
+    .custom-select select {
+        width: auto;
+        margin: 0;
+        padding: .75em 1.5em;
+        outline: none;
+        cursor: pointer;
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
+        /* Styling the select text color */
+        color: rgba(255, 255, 255, 0.6);
+        /* removes the fucking native down arrow */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        text-indent: 0.01px;
+        text-overflow: '';
+    }
+    .custom-select select::-ms-expand {
+        display: none;
+    }
+    .custom-select:after {
+        position: absolute;
+        top: 1.25em;
+        right: 1em;
+        /* Styling the down arrow */
+        width: 0;
+        height: 0;
+        padding: 0;
+        content: '';
+        border-left: .25em solid transparent;
+        border-right: .25em solid transparent;
+        border-top: .375em solid #ffc107;
+        pointer-events: none;
+    }
+    @-moz-document url-prefix() {
+    .custom-select select {
+            padding-right: 1.75em;
+        }
+    }
+    @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .custom-select select {
+        padding-right: 2em;
+    }
+    }
+</style>
+</head>
+<body>
+    <div class="w3-container w3-center w3-animate-bottom">
+        <div class="push">
+            <h3>{{brand}}</h3>
+        </div>
+        
+        <hr>
+
+        <h5>Filter By:</h5>
+        <form action="/{{brand.lower()}}" method="post" enctype="multipart/form-data">
+            <div>
+                <label class="custom-select">
+                    <select name="type">
+                        <option disabled selected>Type</option>
+                        {% for type in type_list %}
+                        <option value= "{{type}}">{{type}}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+                <label class="custom-select">
+                    <select name="num">
+                        <option disabled selected>Number</option>
+                        {% for num in display_nums %}
+                        <option value= "{{num}}">{{num}}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+            </div>
+            <input type="submit" value="Value" name="post_button">
+            <input type="submit" value="Premium" name="post_button">
+            <input type="submit" value="Sales" name="post_button">
+            <input type="submit" value="Shuffle" name="post_button">
+        </form>
+
+        <hr>
+
+            <div class="grid-container"> 
+                <!-- View list start here -->
+                {% for shoe in shoe_list %}
+                {% set filename = shoe +'.jpg' %}   
+                <!-- Single product -->
+                <div class="wrapper" class="overlay">
+                    <a href="/p/id/{{shoe}}" class="overlay">
+                        <div>
+                            <h6>{{shoe}}</h6>
+                        </div>
+                    </a>
+                    <span class="helper"></span>
+                    <img src="{{ url_for('static', filename=filename) }}">
+                </div>
+                {% endfor %}
+                <!-- end Single product -->
+            </div>   
+       
+    </div>
+</body>
+<script src='http://code.jquery.com/jquery-latest.js'></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>
+{% endblock %}

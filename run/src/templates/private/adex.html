@@ -1,0 +1,422 @@
+{% extends "structure.html" %}
+{% block viewport %}
+<!DOCTYPE html>
+<title>Overview</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<style> 
+  .push {
+    margin-top: 0px;
+  }
+  .sub-header {
+    position: relative;
+    text-align: left;
+  }
+  hr {
+      height: 1px;
+      color: gray;
+      background-color: gray;
+      border: none;
+  }
+  h3 {
+  color: white;
+  }
+  * {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Droid Sans', sans-serif;
+    outline: none;
+  }
+  ::-webkit-scrollbar {
+    background: transparent;
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #888;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  body {background-color: #2a2b3d}
+  #contents {
+    position: relative;
+    transition: .3s;
+    margin-left: 290px;
+    background-color: #2a2b3d;
+  }
+  .margin {
+    margin-left: 0 !important;
+  }
+  
+  /* Start statistics */
+  .statistics {
+    margin-top: 25px;
+    color: lightgrey;
+  }
+  .statistics .box {
+    padding: 15px;
+    overflow: hidden;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: 2px 5px 0 rgba(0, 0, 0, 0.2);
+  }
+  .statistics .box > i {
+    float: left;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 22px;
+  }
+  .statistics .box .info {
+    float: left;
+    width: auto;
+    margin-left: 10px;
+  }
+  .statistics .box .info h3 {
+    margin: 5px 0 5px;
+    display: inline-block;
+  }
+  .statistics .box .info p {color:#white}
+  
+  /* End statistics */
+  /* Start statis */
+  
+  .statis {
+    margin-top: 15px;
+  }
+  .statis .box {
+    position: relative;
+    padding: 15px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border-style: solid;
+    border-width: 4px;
+  }
+  .statis .box i {
+    position: absolute;
+    height: 70px;
+    width: 70px;
+    font-size: 22px;
+    padding: 15px;
+    top: -25px;
+    left: -25px;
+    border-style: solid;
+    border-width: 2px;
+    line-height: 60px;
+    text-align: right;
+    border-radius: 50%;
+  }
+  .main-color {
+    color: #ffc107
+  }
+  input[type=submit] {
+      width: 25%;
+      max-width: 150px;
+      background-color: #A03991;
+      color: white;
+      padding: 10px 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+  }
+  input[type=submit]:hover {
+      background-color: #97eff1;
+  }
+  .greatness {border-color: #5bc0de;
+              color: #bbe5f1;
+              box-shadow: 0 0 10px 0 rgba(91, 192, 222, .25)}
+  .greatness2 {background-color: rgba(91, 192, 222, .23);
+               border-color: #5bc0de;}   
+  .greatness-hr {background-color: #5bc0de;
+                 box-shadow: 0 0 10px 0 rgba(91, 192, 222, .5)} 
+  .greatness-font {color: #bbe5f1;}
+  .warning {border-color: #f0ad4e;
+            color: #f9deb9;
+            box-shadow: 0 0 10px 0 rgba(240, 173, 78, .25)}
+  .warning2 {border-color: #f0ad4e;
+             background-color: rgba(240, 173, 78, .23)}
+  .warning-hr {background-color: #f0ad4e;
+            box-shadow: 0 0 10px 0 rgba(240, 173, 78, .5)}
+  .warning-font {color: #f9deb9}
+  .danger {border-color: #d9534f;
+            color: #eaa19f;
+            box-shadow: 0 0 10px 0 rgba(217, 83, 79, .25)}
+  .danger2 {border-color: #d9534f;
+            background-color: rgba(217, 83, 79, .23)}
+  .danger-hr {background-color: #d9534f;
+            box-shadow: 0 0 10px 0 rgba(217, 83, 79, .5)}          
+  .danger-font {color: #eaa19f}
+  .success {border-color: #5cb85c;
+            color: #b5deb5;
+            box-shadow: 0 0 10px 0 rgba(92, 184, 92, .25)}
+  .success2 {border-color: #5cb85c;
+             background-color: rgba(92, 184, 92, .23)}
+  .success-hr {background-color: #5cb85c;
+            box-shadow: 0 0 10px 0 rgba(92, 184, 92, .5)}
+  .success-font {color: #b5deb5}
+  .inf {background-color: #5bc0de}
+  .hollow {background-color: rgba(91, 187, 251, 0.26);
+           border-color: rgba(91, 187, 251, 1)}
+  .ever-g {background-color: rgba(91, 251, 104, 0.26);
+           border-color: rgba(91, 251, 104, 1)}
+  .purp-lite {background-color: rgba(251, 91, 219, 0.26);
+              border-color: rgba(251, 91, 219, 1)}
+  .custom-hr {background-color:white}
+  @media (max-width: 767px) {
+    #contents {
+      margin: 0 !important
+    }
+    .statistics .box {
+      margin-bottom: 25px !important;
+    }
+  }
+</style>
+<style type="text/css" class="cp-pen-styles">
+@import url("https://fonts.googleapis.com/css?family=Inconsolata:700");
+
+.container {
+  position: relative;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  height: 100px;
+}
+.container .search {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  border-color: rgba(255, 36, 83, 1);
+  background-color: rgba(255, 36, 83, 0.26);
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 4px;
+  transition: all 1s;
+  z-index: 4;
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
+}
+.container .search:hover {
+  cursor: pointer;
+}
+.container .search::before {
+  content: "";
+  position: absolute;
+  margin: auto;
+  top: 22px;
+  right: 0;
+  bottom: 0;
+  left: 22px;
+  width: 12px;
+  height: 2px;
+  background: white;
+  transform: rotate(45deg);
+  transition: all 0.5s;
+}
+.container .search::after {
+  content: "";
+  position: absolute;
+  margin: auto;
+  top: -5px;
+  right: 0;
+  bottom: 0;
+  left: -5px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 2px solid white;
+  transition: all 0.5s;
+}
+.container input {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  outline: none;
+  border-color: rgba(255, 36, 83, 1);
+  background-color: rgba(255, 36, 83, 0.26);
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  color: white;
+  padding: 0 80px 0 20px;
+  border-radius: 30px;
+  box-shadow: 2px 5px 0 rgba(0, 0, 0, 0.2);
+  transition: all 1s;
+  opacity: 0;
+  z-index: 5;
+  letter-spacing: 0.1em;
+}
+.container input:hover {
+  cursor: pointer;
+}
+.container input:focus {
+  width: 300px;
+  opacity: 1;
+  cursor: text;
+}
+.container input:focus ~ .search {
+  right: -250px;
+  background: #2a2b3d;
+  z-index: 6;
+}
+.container input:focus ~ .search::before {
+  top: 0;
+  left: 0;
+  width: 25px;
+}
+.container input:focus ~ .search::after {
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 2px;
+  border: none;
+  background: white;
+  border-radius: 0%;
+  transform: rotate(-45deg);
+}
+.container input::placeholder {
+  color: white;
+  opacity: 0.5;
+}
+
+</style>
+
+<body>
+  <div class="w3-container w3-center w3-animate-bottom">
+    <div class="push">
+
+      <div class="sub-header">
+        <h3>Sneaker Search</h3>
+      </div>
+
+      <hr>
+
+      <form action='/p/adex' method='post'>
+        <div class="container">
+          <input name="post_button" type="text" placeholder="Search a sneaker...">
+        <div class="search"></div>
+      </div>
+
+      <div>
+        <input type="submit" value="Search" name="post_button">
+      </div>
+      </form>
+
+      <div class="sub-header">
+        <h3>General Information</h3>
+      </div>
+      <hr>
+
+      <section class="statistics">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="box hollow">
+                <i class="fa fa-free-code-camp fa-fw greatness hollow"></i>
+                <div class="info">
+                  <h3>{{sneaker_total}}</h3> <span>Sneakers</span>
+                  <p>currently in the database.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="box ever-g">
+              <i class="fa fa-usd fa-fw danger ever-g"></i>
+              <div class="info">
+                <h3>{{per_sale_value}}</h3> <span>Dollars</span>
+                <p>average spent per sneaker. </p>
+              </div>
+            </div>
+          </div>
+            <div class="col-md-4">
+              <div class="box purp-lite">
+                <i class="fa fa-users fa-fw success purp-lite"></i>
+                <div class="info">
+                  <h3>5,245</h3> <span>Users</span>
+                  <p>registered on VentureKicks.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="sub-header">
+        <h3>Premium Tracker</h3>
+      </div>
+
+      <hr>
+
+      <section class="statis text-center">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="box greatness">
+                    <i class="fa fa-line-chart greatness2"></i>
+                    <h3 class="greatness-font">{{nike_premium}}%</h3>
+                    <hr class="greatness-hr">
+                    <div class="greatness-font">
+                      <h4>Nike</h4>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-md-3">
+                <div class="box danger">
+                  <i class="fa fa-line-chart danger2"></i>
+                  <h3 class="danger-font">{{adidas_premium}}%</h3>
+                  <hr class="danger-hr">
+                  <div class="danger-font">
+                    <h4>adidas</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="box warning">
+                  <i class="fa fa-line-chart warning2"></i>
+                  <h3 class="warning-font">{{jordan_premium}}%</h3>
+                  <hr class="warning-hr">
+                  <div class="warning-font">
+                    <h4>Jordan</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="box success">
+                  <i class="fa fa-line-chart success2"></i>
+                  <h3 class="success-font">{{other_premium}}%</h3>
+                  <hr class="success-hr">
+                  <div class="success-font">
+                    <h4>Other</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    </div>
+  </div>
+</body>
+<script src='http://code.jquery.com/jquery-latest.js'></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+{% endblock %}

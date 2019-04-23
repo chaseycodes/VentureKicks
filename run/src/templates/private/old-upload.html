@@ -1,0 +1,65 @@
+{% extends "structure.html" %}
+{% block viewport %}
+<!DOCTYPE html>
+<style>
+  body {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 900px; /* You must set a specified height */
+    background-image: url({{ url_for('static', filename='bg51.png') }});
+  }
+    input[type=text], select {
+  width: 25%;
+  padding: 12px 20px;
+  margin: 8px 2px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=number], select {
+  width: 5%;
+  padding: 12px 20px;
+  margin: 8px 2px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+    input[type=submit] {
+  width: 25%;
+  background-color: #9653e8;
+  color: white;
+  padding: 14px 20px;
+  margin: 30px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: #97eff1;
+}
+</style>
+<body>
+<div class="main" align="center">
+    <img type="image" src="{{ url_for('static', filename='upload_new.png') }}" alt="Register" width="400" height="40">
+    <p>
+      <font size=5 color="white">If we're missing a shoe, we'd love for you to upload the name and add it to our site!</font>
+    </p>
+</div>
+<form action="/2492/upload" method="post" enctype="multipart/form-data">
+<div class="body" align="center">
+    <div>
+        <input name="url" type="text" placeholder="Enter sneaker name" autofocus required>
+    </div>
+    <input type="submit" value="Upload">
+</div>
+<div class="body" align="center">
+  {{message}}
+</div>
+</form>
+</body>
+
+    {% endblock %}

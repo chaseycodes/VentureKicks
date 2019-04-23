@@ -1,0 +1,135 @@
+{% extends "structure.html" %}
+{% block viewport %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Update: {{shoeName}}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<style>
+    body {
+        background-color: #2a2b3d;
+        color: lightgray;
+    }
+    hr {
+        height: 1px;
+        color: gray;
+        background-color: gray;
+        border: none;
+    }
+    h3 {
+    color: lightgray;
+    }
+    img{
+        width: 100%;
+        height: auto;
+        max-width: 500px;
+    }
+    .wrapper {
+        width: 100%;
+        margin: 1em auto;
+        background: #fff;
+        padding: 1em;
+        border-radius: 8px;
+        border: 1px solid #f5f5f5;
+    }
+    .wrapper > :first-child {
+        margin-top: 0;
+    }
+    .wrapper > :last-child {
+        margin-bottom: 0;
+    }
+    .grid-container{
+        max-width: 1024px;
+        margin: 0 auto;
+        font-size: 0;
+    }
+
+    .grid-item{
+        width: 23%;
+        border: 0px solid #ccc;
+        margin: 1%;
+        display: inline-block;
+    }
+
+    .vew-product{
+        color: #333;
+        width: 100%;
+        display: block;
+        margin: 0;
+    }
+
+    .view-product *{
+        color: #333;
+    }
+    input[type=text], select {
+        width: 80%;
+        padding: 12px 20px;
+        margin: 8px 2px;
+        display: inline-block;
+        border: 1px solid #ccc;
+        background-color: rgba(255, 255, 255, 0.12);
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type=submit] {
+        width: 40%;
+        background-color: #A03991;
+        color: white;
+        padding: 10px 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    input[type=submit]:hover {
+        background-color: #97eff1;
+    }
+</style>
+</head>
+<body>
+    <div class="w3-container w3-center w3-animate-bottom">
+        <div class="push">
+            <div class="sub-header">
+                <h3>{{shoeName}}</h3>
+            </div>
+        </div>
+        
+        <hr>
+    
+        <div class="wrapper">
+            {% set filename = shoeName+'.jpg' %}
+            <img class="img" type="image" src="{{ url_for('static', filename=filename) }}" title="{{shoe}}">
+        </div>
+
+        <div class="sub-header">
+            <h3>Update</h3>
+        </div>
+
+        <hr>
+
+        <form action="/p/update-box/{{box_pk}}/{{shoeName}}" method="post" enctype="multipart/form-data">
+
+        <div>
+            <input name="price_bought" type="text" placeholder="Price Bought">
+        </div>
+        <div>
+            <input name="price_sold" type="text" placeholder="Price Sold">
+        </div>
+        <hr>
+        
+        <div>
+            <input type="submit" value="Update Box">
+        </div>
+        <div>
+            <font size="0.2" color="red">{{message}}</font>
+        </div>
+        </div>
+        </form>
+    </div>
+</body>
+<script src='http://code.jquery.com/jquery-latest.js'></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>
+{% endblock %}

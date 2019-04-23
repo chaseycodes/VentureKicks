@@ -1,0 +1,486 @@
+{% extends "structure.html" %}
+{% block viewport %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Account</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.1.1/Chart.min.js'></script>
+<style>
+  body {
+    background-color: #2a2b3d;
+    color: lightgray
+  }
+  .push {
+    margin-top: 20px;
+  }
+  hr {
+      height: 1px;
+      color: gray;
+      background-color: gray;
+      border: none;
+  }
+  h3 {
+  color: lightgray;
+  }
+  .sub-header {
+    position: relative;
+    text-align: left;
+  }
+  .dashboard-stat {
+    position: relative;
+    display: block;
+    margin: 0 0 25px;
+    overflow: hidden;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 3px;
+  }
+  .dashboard-stat .visual {
+    width: 80px;
+    height: 80px;
+    display: block;
+    float: left;
+    padding-top: 10px;
+    padding-left: 15px;
+    margin-bottom: 15px;
+    font-size: 35px;
+    line-height: 35px;
+  }
+  .dashboard-stat .visual > i {
+    margin-left: -15px;
+    font-size: 110px;
+    line-height: 110px;
+  }
+  .dashboard-stat .details {
+    position: absolute;
+    right: 15px;
+    padding-right: 15px;
+    color: #fff;
+  }
+  .dashboard-stat .details .number {
+    padding-top: 25px;
+    text-align: right;
+    font-size: 34px;
+    line-height: 36px;
+    letter-spacing: -1px;
+    margin-bottom: 0;
+    font-weight: 300;
+  }
+  .dashboard-stat .details .number .desc {
+    text-transform: capitalize;
+    text-align: right;
+    font-size: 16px;
+    letter-spacing: 0;
+    font-weight: 300;
+  }
+  .dashboard-stat.blue {
+    border-color: rgba(51, 122, 183, 1);
+    background-color: rgba(51, 122, 183, .2)
+  }
+  .blue{color: rgba(51, 122, 183, 1);}
+  .blue2{color: #e7f0f8}
+  .dashboard-stat.red {
+    border-color: rgba(231, 80, 90, 1);
+    background-color: rgba(231, 80, 90, .2);
+  }
+  .red{color: rgba(231, 80, 90, 1)}
+  .red2{color: #fadbdd}
+  .dashboard-stat.purple {
+    background-color:rgba(142, 68, 173, .2);
+    border-color: #8E44AD;
+  }
+  .purple{color: #8E44AD}
+  .purple2{color: #f2e9f6}
+  .dashboard-stat.hoki {
+    border-color: rgb(76, 212, 99, 1);
+    background-color: rgb(76, 212, 99, .2);
+  }
+  .hoki{color: rgb(76, 212, 99, 1)}
+  .hoki2{color: #e6f9e9}
+  .charts {
+    margin-top: 25px;
+    color: #BBB
+  }
+  .charts .chart-container {
+    background-color: #313348;
+    padding: 15px;
+    box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.2);
+  }
+  .charts .chart-container h3 {
+    margin: 0 0 10px;
+    font-size: 17px;
+  }
+  canvas {
+    height: auto;
+    width: auto;
+    max-height: 280px;
+  }
+  .greatness {border-color: #9b80e0;
+              box-shadow: 0 0 2px 0 rgba(91, 192, 222, .1)}
+  table.table-bordered{
+      border:1px solid #9b80e0;
+      margin-top:0px;
+  }
+  table.table-bordered > thead > tr > th{
+        border:2px solid #9b80e0;
+        background-color: rgba(155, 128, 224, .1);
+        color: #e8e2f8;
+    }
+  table.table-bordered > tbody > tr > td{
+        border:1px solid #9b80e0;
+        color: white;
+    }
+    .draw-border-red {
+    box-shadow: inset 0 0 0 2px rgba(155, 128, 224, 1);
+    color: rgba(155, 128, 224, 1);
+    transition: color 0.25s 0.0833333333s;
+    position: relative;
+    }
+    .draw-border-red::before, .draw-border-red::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 0;
+    right: 0;
+    }
+    .draw-border-red::before {
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    }
+    .draw-border-red::after {
+    border-top-width: 4px;
+    border-right-width: 4px;
+    }
+    .draw-border-red:hover {
+        color:  #d9534f
+    }
+    .draw-border-red:hover::before, .draw-border-red:hover::after {
+    border-color:  #d9534f;
+    box-shadow: 0 0 10px 0 rgba(217, 83, 79, .25);
+    transition: border-color 0s, width 0.25s, height 0.25s;
+    width: 100%;
+    height: 100%;
+    }
+    .draw-border-red:hover::before {
+    transition-delay: 0s, 0s, 0.25s;
+    }
+    .draw-border-red:hover::after {
+    transition-delay: 0s, 0.25s, 0s;
+    }
+    .draw-border-green {
+    box-shadow: inset 0 0 0 2px rgba(155, 128, 224, 1);
+    color: rgba(155, 128, 224, 1);
+    transition: color 0.25s 0.0833333333s;
+    position: relative;
+    }
+    .draw-border-green::before, .draw-border-green::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 0;
+    right: 0;
+    }
+    .draw-border-green::before {
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    }
+    .draw-border-green::after {
+    border-top-width: 4px;
+    border-right-width: 4px;
+    }
+    .draw-border-green:hover {
+        color:  #5cb85c
+    }
+    .draw-border-green:hover::before, .draw-border-green:hover::after {
+    border-color:  #5cb85c;
+    box-shadow: 0 0 10px 0 rgba(92, 184, 92, .5);
+    transition: border-color 0s, width 0.25s, height 0.25s;
+    width: 100%;
+    height: 100%;
+    }
+    .draw-border-green:hover::before {
+    transition-delay: 0s, 0s, 0.25s;
+    }
+    .draw-border-green:hover::after {
+    transition-delay: 0s, 0.25s, 0s;
+    }
+    .btn {
+    width: 50px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 0;
+    padding: 1em 1em;
+    letter-spacing: 0.05rem;
+    max-width: 150px;
+    margin-top: 5px;
+    margin-left: 3px;
+    margin-right: 3px
+    }
+    .btn:focus {
+    outline: 2px dotted #55d7dc;
+    }
+</style>
+</head>
+<body>
+    <div class="w3-container w3-center w3-animate-bottom">
+      <div class="push">
+        <div class="sub-header">
+          <h3>General</h3>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <a class="dashboard-stat blue">
+              <div class="visual">
+                <i class="fa fa-free-code-camp" aria-hidden="true"></i>
+              </div>
+              <div class="details">
+                <div class="number blue2">
+                  <span>{{total}}</span>
+                </div>
+                <div class="desc blue">Sneakers</div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <a class="dashboard-stat hoki">
+              <div class="visual">
+                <i class="fa fa-usd"></i>
+              </div>
+              <div class="details">
+                <div class="number hoki2">
+                  <span>{{value}}</span>
+                </div>
+                <div class="desc hoki">Total Value</div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <a class="dashboard-stat purple">
+              <div class="visual">
+                <i class="fa fa-usd"></i>
+              </div>
+              <div class="details purple">
+                <div class="number purple2">
+                  <span>{{profit}}</span>
+                </div>
+                <div class="desc purple">Total Profit</div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <a class="dashboard-stat red">
+              <div class="visual">
+                <i class="fa fa-usd"></i>
+              </div>
+              <div class="details">
+                <div class="number">
+                  <span>{{spent}}</span>
+                </div>
+                <div class="desc red">Total Spent</div>
+              </div>
+            </a>
+          </div>
+        </div>
+          <div class="sub-header">
+            <h3>Statistics</h3>
+          </div>
+          <hr>
+          <section class="charts">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="chart-container">
+                    <h3>Value Tracker</h3>
+                    <canvas id="lineChart" height="250"></canvas>
+                      <script>
+                        // bar chart data
+                        var lineData = {
+                          labels : [
+                            {% for item in labels %}
+                              "{{ item }}",
+                            {% endfor %}
+                          ],
+                          datasets : [{
+                            label: "Value",
+                            fillColor: "rgba(106, 251, 125, 0.3)",
+                            strokeColor: "rgba(151,187,205,1)",
+                            pointColor: "rgba(106, 251, 125, 1)",
+                            pointStrokeColor: "#fff",
+                            pointHighlightFill: "#fff",
+                            pointHighlightStroke: "rgba(151,187,205,1)",
+                            bezierCurve : true,
+                            lineTension : .4,
+                            data : [
+                        {% for item in values %}
+                                {{ item }},
+                              {% endfor %}]
+                                },
+                                {
+                            label: "Profit",
+                            fillColor: "rgba(250, 46, 199, 0.4)",
+                            strokeColor: "rgba(151,187,205,1)",
+                            pointColor: "rgba(250, 46, 199, 1)",
+                            pointStrokeColor: "#fff",
+                            pointHighlightFill: "#fff",
+                            pointHighlightStroke: "rgba(251, 106, 215, 1)",
+                            bezierCurve : true,
+                            data : [
+                        {% for item in profits %}
+                                {{ item }},
+                              {% endfor %}]
+                                }
+                        ],         
+                      
+                            }
+                        Chart.defaults.global.animationSteps = 50;
+                        Chart.defaults.global.tooltipYPadding = 16;
+                        Chart.defaults.global.tooltipCornerRadius = 0;
+                        Chart.defaults.global.tooltipTitleFontStyle = "normal";
+                        Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.8)";
+                        Chart.defaults.global.animationEasing = "easeOutBounce";
+                        Chart.defaults.global.responsive = false;
+                        Chart.defaults.global.scaleLineColor = "black";
+                        Chart.defaults.global.scaleFontSize = 16;
+                        // get bar chart canvas
+                        var mychart = document.getElementById("lineChart").getContext("2d");
+                        steps = 10
+                        max = {{ max }}
+                        // draw bar chart
+                        var LineChartDemo = new Chart(mychart).Line(lineData, {
+                          scaleOverride: true,
+                          scaleSteps: steps,
+                          scaleStepWidth: Math.ceil(max / steps),
+                          scaleStartValue: 0,
+                          scaleShowVerticalLines: false,
+                          scaleShowGridLines : true,
+                          barShowStroke : true,
+                          scaleShowLabels: true,
+                          bezierCurve: true,
+                        });
+   
+                      </script>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="chart-container">
+                    <h3>Brand Percentage</h3>
+                    <canvas id="pieChart" height="250">
+                      <div id="js-legend" class="chart-legend"></div>
+                    </canvas>
+                      <script>
+                        var pieData = [
+                          {% for pie_values, pie_brands, colors in set %}
+                            {
+                              value: {{pie_values}},
+                              label: "{{pie_brands}}",
+                              color: "{{colors}}"
+                            },
+                          {% endfor %}
+                        ];
+                        var options = {
+                            //Boolean - Whether we should show a stroke on each segment
+                            // set to false to hide the space/line between segments
+                            segmentShowStroke: true,
+                            segmentStrokeColor: "#2a2b3d",
+                            legendTemplate: '<ul>' + '<% for (var i=0; i<segments.length; i++) { %>' + '<li>' + '<span style=\"background-color:<%=segments[i].fillColor%>\"></span>' + '<% if (segments[i].label) { %><%= segments[i].label %><% } %>' + '</li>' + '<% } %>' + '</ul>'
+                          };
+                        var mychart = document.getElementById("pieChart").getContext("2d");
+                        steps = 10
+                        max = {{ max }}
+                        // draw pie chart
+                        new Chart(document.getElementById("pieChart").getContext("2d")).Doughnut(pieData,options);
+                        document.getElementById("js-legend").innerHTML = myChart.generateLegend();
+                      </script>
+                  </div>
+                </div>
+              </div>
+              <div class="sub-header">
+                <h3>Shoebox</h3>
+              </div>
+              <hr>
+              <div class="table-responsive greatness">
+                  <table class="table table-bordered greatness">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Image</th>
+                        <th>Ticker</th>
+                        <th>Shoe</th>
+                        <th>Type</th>
+                        <th>Buy Price</th>
+                        <th>Retail Price</th>
+                        <th>Market Price</th>
+                        <th>Retail Return ($)</th>
+                        <th>Market Return ($)</th>
+                        <th>Gain/Loss (Retail)</th>
+                        <th>Gain/Loss (Market)</th>
+                        <th>Sell Price</th>
+                        <th>Profit ($)</th>
+                        <th>Gain/Loss (Profit)</th>
+                        <th>Update</th>
+                        <th>Remove</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for shoe in shoebox.keys() %}
+                      <tr>
+                          <td>{{ shoebox[shoe]['date'] }}</td>
+                          <td>
+                              {% set filename = shoebox[shoe]['shoename'] +'.jpg' %}
+                              <div style="float: middle; display: inline-block;">
+                                  <a href="/p/id/{{shoebox[shoe]['shoename']}}">
+                                      <img type="image" src="{{ url_for('static', filename=filename) }}" title="{{shoebox[shoe]['shoename']}}" width="50">
+                                  </a>
+                              </div>
+                          </td>
+                          <td>{{ shoebox[shoe]['ticker'] }}</td>
+                          <td>{{ shoebox[shoe]['shoename'] }}</td>
+                          <td>{{ shoebox[shoe]['type'] }}</td>
+                          <td>${{ shoebox[shoe]['price_bought'] }}</td>
+                          <td>${{ shoebox[shoe]['retail_price'] }}</td>
+                          <td>${{ shoebox[shoe]['value'] }}</td>
+                          <td>{{ shoebox[shoe]['gain-loss-retail-dollar'] }}</td>
+                          <td>{{ shoebox[shoe]['gain-loss-market-dollar'] }}</td>
+                          <td>{{ shoebox[shoe]['gain-loss-retail-percentage'] }}%</td>
+                          <td>{{ shoebox[shoe]['gain-loss-market-percentage'] }}%</td>
+                          <td>${{ shoebox[shoe]['price_sold'] }}</td>
+                          <td>{{ shoebox[shoe]['profit'] }}</td>
+                          <td>{{ shoebox[shoe]['gain-loss-profit'] }}%</td>
+                          <td>
+                            <form action="/p/account" method="post" enctype="multipart/form-data">
+                              <button class="btn draw-border-green" value="Update-{{ shoebox[shoe]['pk'] }}" name="post_button">✓</button>
+                            </form>
+                          </td>
+                          <td>
+                            <form action="/p/account" method="post" enctype="multipart/form-data">
+                              <button class="btn draw-border-red" value="Remove-{{ shoebox[shoe]['pk'] }}" name="post_button">✗</button>
+                            </form>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+          </section>
+      </div>
+</body>
+<script src='http://code.jquery.com/jquery-latest.js'></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>
+{% endblock %}
+
+

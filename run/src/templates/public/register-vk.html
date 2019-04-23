@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<title>Register</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+  body {
+    background-color: #326d69;
+  }
+  .push {
+    margin-top: 110px;
+  }
+  .topright {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    z-index: 1;
+  }
+  input[type=text], select {
+    width: 320px;
+    padding: 12px 20px;
+    margin: 8px 2px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  input[type=password], select {
+    width: 320px;
+    padding: 12px 20px;
+    margin: 8px 2px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  input[type=email], select {
+    width: 320px;
+    padding: 12px 20px;
+    margin: 8px 2px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  input[type=number], select {
+    width: 7%;
+    height: 7%;
+    padding: 12px 20px;
+    margin: 8px 2px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  input[type=submit] {
+    width: 320px;
+    background-color: #A03991;
+    color: white;
+    padding: 14px 20px;
+    margin: 30px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  input[type=submit]:hover {
+    background-color: #97eff1;
+  }
+  .custom-select {
+        width: 30%;
+        display: inline-block; 
+        position: relative;
+        top: 60%;
+        margin-top: 31px;
+        margin-bottom: -25px;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        /* Styling the select background */
+        background-color: rgba(255, 255, 255, 0.12);
+        border-radius: 4px;
+        font-weight: 0;
+        }
+    .custom-select select {
+        width: auto;
+        margin: 0;
+        padding: .75em 1.5em;
+        outline: none;
+        cursor: pointer;
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
+        /* Styling the select text color */
+        color: rgba(255, 255, 255, 0.6);
+        /* removes the fucking native down arrow */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        text-indent: 0.01px;
+        text-overflow: '';
+    }
+    .custom-select select::-ms-expand {
+        display: none;
+    }
+    .custom-select:after {
+        position: absolute;
+        top: 1.25em;
+        right: 1em;
+        /* Styling the down arrow */
+        width: 0;
+        height: 0;
+        padding: 0;
+        content: '';
+        border-left: .25em solid transparent;
+        border-right: .25em solid transparent;
+        border-top: .375em solid #ffc107;
+        pointer-events: none;
+    }
+  }
+</style>
+
+<body>
+    <div class="topright">
+        <a href="/">
+            <font color="white">Home</font>
+        </a>
+    </div>
+    <div class="w3-container w3-center w3-animate-bottom">
+        <div class="push">
+            <img type="image" src="{{ url_for('static', filename='register_white.png') }}" alt="Register" width=320px>
+        </div>
+        <form action="/register" method="post" enctype="multipart/form-data">
+            <div>
+                <input name="username" type="text" placeholder="Username" autofocus required>
+            </div>
+            <div>
+                <input name="password" type="text" placeholder="Password" autofocus required>
+            </div>
+            <div>
+                <input name="conf_password" type="text" placeholder="Confirm Password" autofocus required>
+            </div>
+            <div>
+              <input name="email" type="email" placeholder="Email Address" autofocus required>
+          </div>
+            <div>
+                <label class="custom-select">
+                <select name="state" method="get" action="/">
+                  <option disabled selected value> State </option>
+                  <option value="AL">Alabama</option>
+                  <option value="AK">Alaska</option>
+                  <option value="AZ">Arizona</option>
+                  <option value="AR">Arkansas</option>
+                  <option value="CA">California</option>
+                  <option value="CO">Colorado</option>
+                  <option value="CT">Connecticut</option>
+                  <option value="DE">Delaware</option>
+                  <option value="DC">District Of Columbia</option>
+                  <option value="FL">Florida</option>
+                  <option value="GA">Georgia</option>
+                  <option value="HI">Hawaii</option>
+                  <option value="ID">Idaho</option>
+                  <option value="IL">Illinois</option>
+                  <option value="IN">Indiana</option>
+                  <option value="IA">Iowa</option>
+                  <option value="KS">Kansas</option>
+                  <option value="KY">Kentucky</option>
+                  <option value="LA">Louisiana</option>
+                  <option value="ME">Maine</option>
+                  <option value="MD">Maryland</option>
+                  <option value="MA">Massachusetts</option>
+                  <option value="MI">Michigan</option>
+                  <option value="MN">Minnesota</option>
+                  <option value="MS">Mississippi</option>
+                  <option value="MO">Missouri</option>
+                  <option value="MT">Montana</option>
+                  <option value="NE">Nebraska</option>
+                  <option value="NV">Nevada</option>
+                  <option value="NH">New Hampshire</option>
+                  <option value="NJ">New Jersey</option>
+                  <option value="NM">New Mexico</option>
+                  <option value="NY">New York</option>
+                  <option value="NC">North Carolina</option>
+                  <option value="ND">North Dakota</option>
+                  <option value="OH">Ohio</option>
+                  <option value="OK">Oklahoma</option>
+                  <option value="OR">Oregon</option>
+                  <option value="PA">Pennsylvania</option>
+                  <option value="RI">Rhode Island</option>
+                  <option value="SC">South Carolina</option>
+                  <option value="SD">South Dakota</option>
+                  <option value="TN">Tennessee</option>
+                  <option value="TX">Texas</option>
+                  <option value="UT">Utah</option>
+                  <option value="VT">Vermont</option>
+                  <option value="VA">Virginia</option>
+                  <option value="WA">Washington</option>
+                  <option value="WV">West Virginia</option>
+                  <option value="WI">Wisconsin</option>
+                  <option value="WY">Wyoming</option>
+                </select>
+                </label>
+                <label class="custom-select">
+                <select type="number" name="age" method="get" action="/">
+                    <option disabled selected value> Age </option>
+                    {% for age in age_list %}
+                    <option value= "{{age}}">{{age}}</option>"
+                    {% endfor %}
+                </select>
+                </label>
+                <label class="custom-select">
+                <select name="gender" method="get" action="/">
+                  <option disabled selected value> Gender </option>
+                  <option value="m">Male</option>
+                  <option value="f">Female</option>
+                  <option value="p">Prefer Not To Say</option>
+                </select>
+                </label>
+            </div>
+            <input type="submit" value="Next"></font>
+            <div>
+              <font size=3 color="red">{{message}}</font>
+            </div>
+        </form>
+    </div>
+</body>
+
+<!-- <div class="push">
+    <img type="image" src="{{ url_for('static', filename='register_white.png') }}" alt="Register" width="400" height="100">
+</div>
+<form action="/register" method="post" enctype="multipart/form-data">
+<div class="body" align="center">
+    <div>
+        <input name="username" type="text" placeholder="Username" autofocus required>
+    </div>
+    <div>
+        <input name="password" type="text" placeholder="Password" autofocus required>
+    </div>
+    <div>
+        <input name="conf_password" type="text" placeholder="Confirm Password" autofocus required>
+    </div>
+    <div>
+        <font size=3 color="white">Age</font>
+        <select type="number" name="age" method="get" action="/">
+            {% for age in age_list %}
+            <option value= "{{age}}">{{age}}</option>"
+            {% endfor %}
+        </select>
+        <font size=3 color="white">Male</font>
+        <input type="radio" name='check' value="Male" />
+        <font size=3 color="white">Female</font>
+        <input type="radio" name='check' value='Female'/>
+    </div>
+    <input type="submit" value="Next">
+</div>
+</form> -->

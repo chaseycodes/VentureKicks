@@ -1,5 +1,5 @@
 # Venture Kicks
-An application to help people manage their inventory and make better purchases. 
+A mobile responsive web application to help people manage their inventory and make better purchases. 
 
 ## Demo
 > www.venturekicks.com
@@ -11,7 +11,6 @@ An application to help people manage their inventory and make better purchases.
 2. Users can create accounts and track their purchases and/or profits by adding sneakers from the database. 
 3. Users can find sneakers based on parameters like: Brand, Price Range, Premium, Market Value, & Color. 
 4. Users can keep track of their favorite sneakers, while a content-based filtering system will reccomend shoes that other  like-users have favorited. 
-5. Users can view data about the secondary sneaker market. 
 
 ## Stack
 **Front-end**: HTML, CSS, Chart.js

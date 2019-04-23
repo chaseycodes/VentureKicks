@@ -38,7 +38,7 @@ python3 run/wsgi.py
 ![](images/index.png)
 
 ## Account
-![](images/account.png)
+![](images/_account.png)
 
 ## Reccomendation
 ![](images/finder.png)

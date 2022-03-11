@@ -48,7 +48,7 @@ pbr==5.1.2
 pexpect==4.6.0
 pickleshare==0.7.5
 PIL==1.1.7
-Pillow==5.4.1
+Pillow==9.0.1
 pillowcase==2.0.0
 plotly==3.6.0
 prometheus-client==0.4.2

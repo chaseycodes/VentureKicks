@@ -40,5 +40,4 @@ python3 run/wsgi.py
 ## Reccomendation
 ![](images/finder.png)
 
-## Contact Me
-chaseahn4@gmail.com
+
